@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F24EBDCC-71D5-476A-A3F8-A1467097C00F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MYAPPCS</RootNamespace>
+    <AssemblyName>MYAPPCS</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="PagedControl, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedControl.2.2.0\lib\net35\PagedControl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TabControl, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TabControl.2.1.2\lib\net35\TabControl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormChatting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormChatting.Designer.cs">
+      <DependentUpon>FormChatting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\FormUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting\FormUI.Designer.cs">
+      <DependentUpon>FormUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\FormAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting\FormAccount.Designer.cs">
+      <DependentUpon>FormAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Log\FormErrorReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Log\FormErrorReport.Designer.cs">
+      <DependentUpon>FormErrorReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Log\FormLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Log\FormLog.Designer.cs">
+      <DependentUpon>FormLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sistem Admin\FormUserDataPopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistem Admin\FormUserDataPopUp.Designer.cs">
+      <DependentUpon>FormUserDataPopUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master Data\FormMenuApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master Data\FormMenuApp.Designer.cs">
+      <DependentUpon>FormMenuApp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master Data\FormRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master Data\FormRole.Designer.cs">
+      <DependentUpon>FormRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sistem Admin\FormRoleGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistem Admin\FormRoleGroup.Designer.cs">
+      <DependentUpon>FormRoleGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sistem Admin\FormUserGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistem Admin\FormUserGroup.Designer.cs">
+      <DependentUpon>FormUserGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sistem Admin\FormGroupLevel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistem Admin\FormGroupLevel.Designer.cs">
+      <DependentUpon>FormGroupLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sistem Admin\FormUserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistem Admin\FormUserRole.Designer.cs">
+      <DependentUpon>FormUserRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master Data\FormGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master Data\FormGroup.Designer.cs">
+      <DependentUpon>FormGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSplashScreen.Designer.cs">
+      <DependentUpon>FormSplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sistem Admin\FormUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sistem Admin\FormUser.Designer.cs">
+      <DependentUpon>FormUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\AuthHelper.cs" />
+    <Compile Include="Helper\ColorLibrary.cs" />
+    <Compile Include="Helper\DesignColor.cs" />
+    <Compile Include="Helper\DesignColorReset.cs" />
+    <Compile Include="Helper\DgvRowToString.cs" />
+    <Compile Include="Helper\GetComputerInfo.cs" />
+    <Compile Include="Helper\GetOpenForm.cs" />
+    <Compile Include="Helper\LogApp.cs" />
+    <Compile Include="Helper\LogError.cs" />
+    <Compile Include="Helper\PassingObject.cs" />
+    <Compile Include="Helper\SqlService.cs" />
+    <Compile Include="Helper\Utilities.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormChatting.resx">
+      <DependentUpon>FormChatting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\FormAccount.resx">
+      <DependentUpon>FormAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSplashScreen.resx">
+      <DependentUpon>FormSplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Log\FormErrorReport.resx">
+      <DependentUpon>FormErrorReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Log\FormLog.resx">
+      <DependentUpon>FormLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Setting\FormUI.resx">
+      <DependentUpon>FormUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master Data\FormGroup.resx">
+      <DependentUpon>FormGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistem Admin\FormGroupLevel.resx">
+      <DependentUpon>FormGroupLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master Data\FormMenuApp.resx">
+      <DependentUpon>FormMenuApp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master Data\FormRole.resx">
+      <DependentUpon>FormRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistem Admin\FormRoleGroup.resx">
+      <DependentUpon>FormRoleGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistem Admin\FormUserDataPopUp.resx">
+      <DependentUpon>FormUserDataPopUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistem Admin\FormUserGroup.resx">
+      <DependentUpon>FormUserGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistem Admin\FormUserRole.resx">
+      <DependentUpon>FormUserRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sistem Admin\FormUser.resx">
+      <DependentUpon>FormUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0-2844_1920x1080-hd-wallpapers-for-windows-unique-hd-wallpapers.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21014-full_solid-color-wallpaper-hd-for-android-apk-download.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\auth.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closeform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\date.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_log.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconmenu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\laporan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading-animation1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\master.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAXXIS-LOGO-RGB-01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MAXXISS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimizeform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\notif.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Screenshot %2872%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sgnal_no.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\signal_hight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\signal_low.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\source.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\th %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\userid1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\username.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DatabaseLocal.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DatabaseLocal_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>DatabaseLocal.mdf</DependentUpon>
+    </Content>
+    <None Include="Resources\loading-animation11.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
