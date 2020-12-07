@@ -91,3 +91,10 @@ E:\Project\visual studio\MYAPPCS\MYAPPCS\bin\Debug\de\DevExpress.Pdf.v17.1.Core.
 E:\Project\visual studio\MYAPPCS\MYAPPCS\bin\Debug\es\DevExpress.Pdf.v17.1.Core.resources.dll
 E:\Project\visual studio\MYAPPCS\MYAPPCS\bin\Debug\ja\DevExpress.Pdf.v17.1.Core.resources.dll
 E:\Project\visual studio\MYAPPCS\MYAPPCS\bin\Debug\ru\DevExpress.Pdf.v17.1.Core.resources.dll
+E:\Project\visual studio\MYAppCS\MYAPPCS\bin\Debug\DevExpress.XtraBars.v17.1.dll
+E:\Project\visual studio\MYAppCS\MYAPPCS\bin\Debug\DevExpress.XtraBars.v17.1.xml
+E:\Project\visual studio\MYAppCS\MYAPPCS\bin\Debug\de\DevExpress.XtraBars.v17.1.resources.dll
+E:\Project\visual studio\MYAppCS\MYAPPCS\bin\Debug\es\DevExpress.XtraBars.v17.1.resources.dll
+E:\Project\visual studio\MYAppCS\MYAPPCS\bin\Debug\ja\DevExpress.XtraBars.v17.1.resources.dll
+E:\Project\visual studio\MYAppCS\MYAPPCS\bin\Debug\ru\DevExpress.XtraBars.v17.1.resources.dll
+E:\Project\visual studio\MYAppCS\MYAPPCS\obj\Debug\MYAPPCS.exe.licenses

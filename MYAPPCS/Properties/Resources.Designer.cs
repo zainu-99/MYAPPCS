@@ -173,6 +173,16 @@ namespace MYAPPCS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap connect {
+            get {
+                object obj = ResourceManager.GetObject("connect", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap counter {
             get {
                 object obj = ResourceManager.GetObject("counter", resourceCulture);
@@ -226,6 +236,16 @@ namespace MYAPPCS.Properties {
         internal static System.Drawing.Bitmap filter {
             get {
                 object obj = ResourceManager.GetObject("filter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap help {
+            get {
+                object obj = ResourceManager.GetObject("help", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

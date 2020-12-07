@@ -1,4 +1,6 @@
-﻿using MYAPPCS.Helper;
+﻿using DevExpress.XtraTab;
+using DevExpress.XtraTab.ViewInfo;
+using MYAPPCS.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,13 +25,10 @@ namespace MYAPPCS
             InitializeComponent();
             MenuApp.Renderer = new MyRender();
         }
-
-        #region "<<Not For Change>>"
         private void FormMain_Load(object sender, EventArgs e)
         {
             Reload();
         }
-        #region "REload"
         void Reload()
         {
             CreateMenuAccess();
@@ -39,10 +38,6 @@ namespace MYAPPCS
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             LabelVersion.Text = "Version: " + fvi.FileVersion;
         }
-        #endregion
-
-
-        #region "toggle Menu"
         private void btnMenu_Click(object sender, EventArgs e)
         {
             PanelSideBar.Visible = !PanelSideBar.Visible;
@@ -56,48 +51,44 @@ namespace MYAPPCS
         {
             btnMenu.BackColor = PanelHeader.BackColor;
         }
-        #endregion
-
-        #region "emasukan form child ke panel"
-        public void ShowFormToPanel(Form form)
+        String NothingString(object obj)
         {
-            ProgressBarLoad.Value = 0;
-            if (PanelFormFill.Controls.Find(form.Name, true).Length == 0)
+            return (obj == null) ? "" : obj.ToString();
+        }
+        public void ShowFormToPanel(Form form,String rolename=null)
+        {
+            if (rolename != null) form.Tag = rolename ;
+            if (!AuthHelper.GetAutUserView(form.Tag.ToString()) && NothingString(form.Tag) != "")
             {
-                if (form.Tag != null)
+                MessageBox.Show("You Have No Access");
+                return;
+            }
+            try
+            {
+                ProgressBarLoad.Value = 0;
+                if (TabControlMain.Controls.Find(form.Name, true).Length == 0)
                 {
                     form.WindowState = FormWindowState.Normal;
                     form.TopLevel = false;
-                    form.Resize += new EventHandler(FormChild_Resize);
                     form.Shown += new EventHandler(FormChild_Shown);
-                    PanelFormFill.Controls.Add(form);
-                    if (AuthHelper.GetAutUserView(form.Tag.ToString()) || form.Tag.ToString() == "Login")
-                        form.Show();
-                    else
-                        MessageBox.Show("You Have No Access");
+                    TabControlMain.TabPages.Add(form.Name);
+                    TabControlMain.TabPages[TabControlMain.TabPages.Count - 1].Controls.Add(form);
+                    form.Show();
+                    TabControlMain.SelectedTabPageIndex = TabControlMain.TabPages.Count-1;
                 }
                 else
-                    MessageBox.Show("Form Not Found");
+                    TabControlMain.SelectedTabPage = TabControlMain.TabPages.Where(a => a.Text == form.Name).FirstOrDefault();
+                form.Dock = DockStyle.Fill;
+                form.BringToFront();
+                FormActive = form.Name;
+                LabelTitle.Text = form.Text;
+                ProgressBarLoad.Value = 100;
             }
-            else
-                form = (Form)PanelFormFill.Controls.Find(form.Name, true)[0];
-            if (form.WindowState == FormWindowState.Minimized)
-                form.WindowState = FormWindowState.Maximized;
-            form.Dock = DockStyle.Fill;
-            form.BringToFront();
-            FormActive = form.Name;
-            BringFomMinimizeToFront();
-            ProgressBarLoad.Value = 100;
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
-        private void FormChild_Resize(object sender, EventArgs e)
-        {
-            LabelTitle.Text = ((Form)sender).Text;
-            FormActive = ((Form)sender).Name;
-            BringFomMinimizeToFront();
-        }
-        #endregion
-
-        #region "ketika form child tampil"
         private void FormChild_Shown(object sender, EventArgs e)
         {
             if (((Form)sender).Controls.Find("PanelButton", true).Length > 0)
@@ -159,8 +150,6 @@ namespace MYAPPCS
                 }
             }
         }
-        #endregion
-        #region "Init Account Data"
         void InitData()
         {
             var user = SqlService.GetDataTable("select userid,name,avatar from users where id ='" + MYAPPCS.Properties.Settings.Default.id_user + "'");
@@ -178,10 +167,6 @@ namespace MYAPPCS
             }
 
         }
-        #endregion
-
-
-        #region "Set Tampilan"
         public void SetDesignUI()
         {
             PanelHeader.BackColor = DesignColor.PanelHeader;
@@ -192,18 +177,11 @@ namespace MYAPPCS
             PanelMenu.BackColor = DesignColor.PanelMenuBackground;
             PanelFooter.BackColor = DesignColor.PanelFooter;
             LabelVersion.BackColor = DesignColor.PanelFooter;
-            PanelSparator.BackColor = DesignColor.PanelSparatorFormChild;
             LabelTitle.ForeColor = DesignColor.TextForeColor;
             LabelNama.ForeColor = DesignColor.TextForeColor;
             LabelUserId.ForeColor = DesignColor.TextForeColor;
             LabelMenu.ForeColor = DesignColor.TextForeColor;
-            ButtonMinimize.BackColor = DesignColor.ButtonMinimizeFormChild;
-            ButtonClose.BackColor = DesignColor.ButtonCloseFormChild;
         }
-        #endregion
-
-
-        #region "Membuat Menu Dan Menambakan Eventnya"
         void CreateMenuAccess()
         {
             MenuApp.Items.Clear();
@@ -266,10 +244,6 @@ namespace MYAPPCS
             }
             return form;
         }
-        #endregion
-
-        #region showup FOrmchild
-
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             GetOpenForm.GetForm("FormLogin").Show();
@@ -280,67 +254,7 @@ namespace MYAPPCS
         {
             Close();
         }
-
-        private void ButtonClose_Click(object sender, EventArgs e)
-        {
-            foreach (Control control in PanelFormFill.Controls)
-            {
-                if (control.Tag.ToString() != "NoForm")
-                    if (control.Visible && ((Form)control).WindowState != FormWindowState.Minimized)
-                    {
-                        ((Form)control).Close();
-                        break;
-                    }
-            }
-            GetTopFormChild();
-        }
-
-        private void ButtonMinimize_Click(object sender, EventArgs e)
-        {
-            foreach (Control control in PanelFormFill.Controls)
-            {
-                if (control.Tag.ToString() != "NoForm")
-                    if (control.Visible && ((Form)control).WindowState != FormWindowState.Minimized)
-                    {
-                        ((Form)control).WindowState = FormWindowState.Minimized;
-                        ((Form)control).BringToFront();
-                        break;
-                    }
-            }
-            GetTopFormChild();
-        }
-
-        #region "untuk mengetahui form child yang paling atas yang tampil"
-        private void GetTopFormChild()
-        {
-            foreach (Control control in PanelFormFill.Controls)
-            {
-                if (control.Tag.ToString() != "NoForm")
-                    if (control.Visible && ((Form)control).WindowState != FormWindowState.Minimized)
-                    {
-                        LabelTitle.Text = ((Form)control).Text;
-                        FormActive = ((Form)control).Name;
-                        break;
-                    }
-            }
-        }
-        #endregion
-        #region "agar form child minimize ada di paling atas"
-        private void BringFomMinimizeToFront()
-        {
-            foreach (Control control in PanelFormFill.Controls)
-            {
-                if (control.Tag.ToString() != "NoForm")
-                    if (((Form)control).WindowState == FormWindowState.Minimized)
-                    {
-                        ((Form)control).BringToFront();
-                    }
-            }
-        }
-        #endregion
-        #endregion
-
-        #region "Timer"
+       
         int counterSecond = 0;
         private void TimerMain_Tick(object sender, EventArgs e)
         {
@@ -357,7 +271,6 @@ namespace MYAPPCS
                 PictureBoxSignal.Image = MYAPPCS.Properties.Resources.signal_low;
         }
 
-        #region "ngeping"
         long SignalChecker(String ip)
         {
             try
@@ -370,9 +283,6 @@ namespace MYAPPCS
                 return 999;
             }
         }
-        #endregion
-
-        #region "funsi convert detik ke jam"
         private String ConvertSecondToHours(int second)
         {
             int Hrs;
@@ -383,12 +293,6 @@ namespace MYAPPCS
             Hrs = ((second - (Sec + (Min * 60))) / 3600);
             return Hrs.ToString("00") + ":" + Min.ToString("00") + ":" + Sec.ToString("00");
         }
-        #endregion
-
-        #endregion
-
-
-        #region FormMain FUngsi
         private void ButtonSetting_Click(object sender, EventArgs e)
         {
             ShowFormToPanel(new FormAccount());
@@ -402,12 +306,36 @@ namespace MYAPPCS
         {
             ShowFormToPanel(new FormChatting());
         }
-        #endregion
+
+        private void ButtonHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Contact:zainu.developer@gmail.com");
+        }
+
+        private void TabControlMain_CloseButtonClick(object sender, EventArgs e)
+        {
+            var curSelect = TabControlMain.SelectedTabPageIndex;
+            if (curSelect - 1 == -1)
+                curSelect = curSelect - 1;
+            var page = ((e as ClosePageButtonEventArgs));
+            if ((page.Page as XtraTabPage) == TabControlMain.SelectedTabPage)
+                TabControlMain.SelectedTabPageIndex = curSelect-1;
+            (page.Page as XtraTabPage).Dispose();
+            
+        }
+
+        private void TabControlMain_SelectedPageChanged(object sender, TabPageChangedEventArgs e)
+        {
+            if (TabControlMain.SelectedTabPageIndex == -1)
+            {
+                LabelTitle.Text = "MYAPPVB CORE SYSTEM";
+                return;
+            }
+            LabelTitle.Text = TabControlMain.TabPages[TabControlMain.SelectedTabPageIndex].Text;
+        }
+
     }
 
-    #endregion
-
-    #region "Membuat Custom Desain Menu Strip"
     public class MyRender : ToolStripProfessionalRenderer
     {
         protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
@@ -428,5 +356,4 @@ namespace MYAPPCS
 
         }
     }
-    #endregion
 }

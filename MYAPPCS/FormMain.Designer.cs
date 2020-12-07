@@ -34,6 +34,7 @@ namespace MYAPPCS
         {
             this.components = new System.ComponentModel.Container();
             this.PanelMain = new System.Windows.Forms.Panel();
+            this.TabControlMain = new DevExpress.XtraTab.XtraTabControl();
             this.PanelStatusBar = new System.Windows.Forms.Panel();
             this.LabelDate = new System.Windows.Forms.Label();
             this.PictureBox3 = new System.Windows.Forms.PictureBox();
@@ -44,10 +45,6 @@ namespace MYAPPCS
             this.PictureBoxSignal = new System.Windows.Forms.PictureBox();
             this.LabelSignal = new System.Windows.Forms.Label();
             this.ProgressBarLoad = new System.Windows.Forms.ProgressBar();
-            this.ButtonMinimize = new System.Windows.Forms.Button();
-            this.ButtonClose = new System.Windows.Forms.Button();
-            this.PanelFormFill = new System.Windows.Forms.Panel();
-            this.PanelSparator = new System.Windows.Forms.Panel();
             this.PanelFooter = new System.Windows.Forms.Panel();
             this.Label5 = new System.Windows.Forms.Label();
             this.PanelHeader = new System.Windows.Forms.Panel();
@@ -62,16 +59,19 @@ namespace MYAPPCS
             this.LabelVersion = new System.Windows.Forms.Label();
             this.MenuApp = new System.Windows.Forms.MenuStrip();
             this.PanelProfile = new System.Windows.Forms.Panel();
+            this.ButtonConnect = new System.Windows.Forms.Button();
+            this.ButtonHelp = new System.Windows.Forms.Button();
             this.LabelNama = new System.Windows.Forms.Label();
+            this.ButtonSetting = new System.Windows.Forms.Button();
             this.LabelMenu = new System.Windows.Forms.Label();
             this.PictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.LabelUserId = new System.Windows.Forms.Label();
-            this.PanelTitle = new System.Windows.Forms.Panel();
-            this.ButtonSetting = new System.Windows.Forms.Button();
             this.ButtonRefresh = new System.Windows.Forms.Button();
+            this.PanelTitle = new System.Windows.Forms.Panel();
             this.LabelRefresh = new System.Windows.Forms.Label();
             this.TimerMain = new System.Windows.Forms.Timer(this.components);
             this.PanelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TabControlMain)).BeginInit();
             this.PanelStatusBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
@@ -92,18 +92,29 @@ namespace MYAPPCS
             // PanelMain
             // 
             this.PanelMain.BackColor = System.Drawing.Color.LightGray;
+            this.PanelMain.Controls.Add(this.TabControlMain);
             this.PanelMain.Controls.Add(this.PanelStatusBar);
             this.PanelMain.Controls.Add(this.ProgressBarLoad);
-            this.PanelMain.Controls.Add(this.ButtonMinimize);
-            this.PanelMain.Controls.Add(this.ButtonClose);
-            this.PanelMain.Controls.Add(this.PanelFormFill);
-            this.PanelMain.Controls.Add(this.PanelSparator);
             this.PanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMain.Location = new System.Drawing.Point(219, 42);
             this.PanelMain.Name = "PanelMain";
             this.PanelMain.Padding = new System.Windows.Forms.Padding(19, 43, 19, 19);
-            this.PanelMain.Size = new System.Drawing.Size(1143, 624);
+            this.PanelMain.Size = new System.Drawing.Size(1143, 606);
             this.PanelMain.TabIndex = 7;
+            // 
+            // TabControlMain
+            // 
+            this.TabControlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabControlMain.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders;
+            this.TabControlMain.Location = new System.Drawing.Point(17, 51);
+            this.TabControlMain.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.TabControlMain.Name = "TabControlMain";
+            this.TabControlMain.Size = new System.Drawing.Size(1114, 549);
+            this.TabControlMain.TabIndex = 11;
+            this.TabControlMain.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.TabControlMain_SelectedPageChanged);
+            this.TabControlMain.CloseButtonClick += new System.EventHandler(this.TabControlMain_CloseButtonClick);
             // 
             // PanelStatusBar
             // 
@@ -116,9 +127,9 @@ namespace MYAPPCS
             this.PanelStatusBar.Controls.Add(this.PictureBoxSignal);
             this.PanelStatusBar.Controls.Add(this.LabelSignal);
             this.PanelStatusBar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PanelStatusBar.Location = new System.Drawing.Point(18, 3);
+            this.PanelStatusBar.Location = new System.Drawing.Point(18, 6);
             this.PanelStatusBar.Name = "PanelStatusBar";
-            this.PanelStatusBar.Size = new System.Drawing.Size(323, 39);
+            this.PanelStatusBar.Size = new System.Drawing.Size(231, 39);
             this.PanelStatusBar.TabIndex = 10;
             // 
             // LabelDate
@@ -212,70 +223,12 @@ namespace MYAPPCS
             this.ProgressBarLoad.TabIndex = 7;
             this.ProgressBarLoad.Value = 100;
             // 
-            // ButtonMinimize
-            // 
-            this.ButtonMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonMinimize.BackColor = System.Drawing.Color.Salmon;
-            this.ButtonMinimize.FlatAppearance.BorderSize = 0;
-            this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonMinimize.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMinimize.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ButtonMinimize.Image = global::MYAPPCS.Properties.Resources.minimizeform;
-            this.ButtonMinimize.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonMinimize.Location = new System.Drawing.Point(826, 8);
-            this.ButtonMinimize.Name = "ButtonMinimize";
-            this.ButtonMinimize.Size = new System.Drawing.Size(146, 31);
-            this.ButtonMinimize.TabIndex = 6;
-            this.ButtonMinimize.Text = "Minimize From";
-            this.ButtonMinimize.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ButtonMinimize.UseVisualStyleBackColor = false;
-            this.ButtonMinimize.Click += new System.EventHandler(this.ButtonMinimize_Click);
-            // 
-            // ButtonClose
-            // 
-            this.ButtonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonClose.BackColor = System.Drawing.Color.Salmon;
-            this.ButtonClose.FlatAppearance.BorderSize = 0;
-            this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonClose.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ButtonClose.Image = global::MYAPPCS.Properties.Resources.closeform;
-            this.ButtonClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonClose.Location = new System.Drawing.Point(978, 8);
-            this.ButtonClose.Name = "ButtonClose";
-            this.ButtonClose.Size = new System.Drawing.Size(146, 31);
-            this.ButtonClose.TabIndex = 5;
-            this.ButtonClose.Text = "Close From";
-            this.ButtonClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.ButtonClose.UseVisualStyleBackColor = false;
-            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
-            // 
-            // PanelFormFill
-            // 
-            this.PanelFormFill.BackColor = System.Drawing.Color.White;
-            this.PanelFormFill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelFormFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PanelFormFill.Location = new System.Drawing.Point(19, 52);
-            this.PanelFormFill.Margin = new System.Windows.Forms.Padding(17);
-            this.PanelFormFill.Name = "PanelFormFill";
-            this.PanelFormFill.Size = new System.Drawing.Size(1105, 553);
-            this.PanelFormFill.TabIndex = 4;
-            // 
-            // PanelSparator
-            // 
-            this.PanelSparator.BackColor = System.Drawing.Color.DarkOrange;
-            this.PanelSparator.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSparator.Location = new System.Drawing.Point(19, 43);
-            this.PanelSparator.Name = "PanelSparator";
-            this.PanelSparator.Size = new System.Drawing.Size(1105, 9);
-            this.PanelSparator.TabIndex = 0;
-            // 
             // PanelFooter
             // 
             this.PanelFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(56)))), ((int)(((byte)(84)))));
             this.PanelFooter.Controls.Add(this.Label5);
             this.PanelFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelFooter.Location = new System.Drawing.Point(219, 666);
+            this.PanelFooter.Location = new System.Drawing.Point(219, 648);
             this.PanelFooter.Name = "PanelFooter";
             this.PanelFooter.Size = new System.Drawing.Size(1143, 40);
             this.PanelFooter.TabIndex = 5;
@@ -283,14 +236,13 @@ namespace MYAPPCS
             // Label5
             // 
             this.Label5.AutoSize = true;
-            this.Label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label5.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label5.ForeColor = System.Drawing.Color.White;
             this.Label5.Location = new System.Drawing.Point(19, 15);
             this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(602, 15);
+            this.Label5.Size = new System.Drawing.Size(349, 18);
             this.Label5.TabIndex = 0;
-            this.Label5.Text = "Copyright © 2017 Belicoding.com All rights reserved. Created By zainu.developer@g" +
-    "mail.com";
+            this.Label5.Text = "Copyright © 2019 | Framework by www.deretcode.com";
             // 
             // PanelHeader
             // 
@@ -390,7 +342,7 @@ namespace MYAPPCS
             this.PanelSideBar.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelSideBar.Location = new System.Drawing.Point(0, 0);
             this.PanelSideBar.Name = "PanelSideBar";
-            this.PanelSideBar.Size = new System.Drawing.Size(219, 706);
+            this.PanelSideBar.Size = new System.Drawing.Size(219, 688);
             this.PanelSideBar.TabIndex = 4;
             // 
             // PanelMenu
@@ -402,18 +354,18 @@ namespace MYAPPCS
             this.PanelMenu.Controls.Add(this.MenuApp);
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PanelMenu.Location = new System.Drawing.Point(0, 173);
+            this.PanelMenu.Location = new System.Drawing.Point(0, 204);
             this.PanelMenu.Margin = new System.Windows.Forms.Padding(9, 3, 9, 3);
             this.PanelMenu.Name = "PanelMenu";
             this.PanelMenu.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.PanelMenu.Size = new System.Drawing.Size(219, 533);
+            this.PanelMenu.Size = new System.Drawing.Size(219, 484);
             this.PanelMenu.TabIndex = 5;
             // 
             // PanelInfo
             // 
             this.PanelInfo.Controls.Add(this.LabelVersion);
             this.PanelInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelInfo.Location = new System.Drawing.Point(3, 493);
+            this.PanelInfo.Location = new System.Drawing.Point(3, 444);
             this.PanelInfo.Name = "PanelInfo";
             this.PanelInfo.Size = new System.Drawing.Size(213, 40);
             this.PanelInfo.TabIndex = 1;
@@ -422,7 +374,7 @@ namespace MYAPPCS
             // 
             this.LabelVersion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(56)))), ((int)(((byte)(84)))));
             this.LabelVersion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LabelVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelVersion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelVersion.ForeColor = System.Drawing.Color.White;
             this.LabelVersion.Location = new System.Drawing.Point(0, 0);
             this.LabelVersion.Name = "LabelVersion";
@@ -447,7 +399,10 @@ namespace MYAPPCS
             // PanelProfile
             // 
             this.PanelProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(32)))), ((int)(((byte)(61)))));
+            this.PanelProfile.Controls.Add(this.ButtonConnect);
+            this.PanelProfile.Controls.Add(this.ButtonHelp);
             this.PanelProfile.Controls.Add(this.LabelNama);
+            this.PanelProfile.Controls.Add(this.ButtonSetting);
             this.PanelProfile.Controls.Add(this.LabelMenu);
             this.PanelProfile.Controls.Add(this.PictureBoxProfile);
             this.PanelProfile.Controls.Add(this.LabelUserId);
@@ -455,8 +410,31 @@ namespace MYAPPCS
             this.PanelProfile.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelProfile.Location = new System.Drawing.Point(0, 42);
             this.PanelProfile.Name = "PanelProfile";
-            this.PanelProfile.Size = new System.Drawing.Size(219, 131);
+            this.PanelProfile.Size = new System.Drawing.Size(219, 162);
             this.PanelProfile.TabIndex = 5;
+            // 
+            // ButtonConnect
+            // 
+            this.ButtonConnect.FlatAppearance.BorderSize = 0;
+            this.ButtonConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonConnect.Image = global::MYAPPCS.Properties.Resources.connect;
+            this.ButtonConnect.Location = new System.Drawing.Point(63, 126);
+            this.ButtonConnect.Name = "ButtonConnect";
+            this.ButtonConnect.Size = new System.Drawing.Size(39, 33);
+            this.ButtonConnect.TabIndex = 6;
+            this.ButtonConnect.UseVisualStyleBackColor = true;
+            // 
+            // ButtonHelp
+            // 
+            this.ButtonHelp.FlatAppearance.BorderSize = 0;
+            this.ButtonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonHelp.Image = global::MYAPPCS.Properties.Resources.help;
+            this.ButtonHelp.Location = new System.Drawing.Point(6, 126);
+            this.ButtonHelp.Name = "ButtonHelp";
+            this.ButtonHelp.Size = new System.Drawing.Size(39, 33);
+            this.ButtonHelp.TabIndex = 5;
+            this.ButtonHelp.UseVisualStyleBackColor = true;
+            this.ButtonHelp.Click += new System.EventHandler(this.ButtonHelp_Click);
             // 
             // LabelNama
             // 
@@ -469,6 +447,20 @@ namespace MYAPPCS
             this.LabelNama.TabIndex = 4;
             this.LabelNama.Text = "Zainudin";
             this.LabelNama.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ButtonSetting
+            // 
+            this.ButtonSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonSetting.FlatAppearance.BorderSize = 0;
+            this.ButtonSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonSetting.Image = global::MYAPPCS.Properties.Resources.setting;
+            this.ButtonSetting.Location = new System.Drawing.Point(188, 129);
+            this.ButtonSetting.Name = "ButtonSetting";
+            this.ButtonSetting.Padding = new System.Windows.Forms.Padding(3);
+            this.ButtonSetting.Size = new System.Drawing.Size(25, 23);
+            this.ButtonSetting.TabIndex = 2;
+            this.ButtonSetting.UseVisualStyleBackColor = true;
+            this.ButtonSetting.Click += new System.EventHandler(this.ButtonSetting_Click);
             // 
             // LabelMenu
             // 
@@ -504,54 +496,39 @@ namespace MYAPPCS
             this.LabelUserId.Text = "Admin";
             this.LabelUserId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // PanelTitle
-            // 
-            this.PanelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(32)))), ((int)(((byte)(61)))));
-            this.PanelTitle.Controls.Add(this.LabelRefresh);
-            this.PanelTitle.Controls.Add(this.ButtonSetting);
-            this.PanelTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelTitle.Location = new System.Drawing.Point(0, 0);
-            this.PanelTitle.Name = "PanelTitle";
-            this.PanelTitle.Size = new System.Drawing.Size(219, 42);
-            this.PanelTitle.TabIndex = 1;
-            // 
-            // ButtonSetting
-            // 
-            this.ButtonSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonSetting.FlatAppearance.BorderSize = 0;
-            this.ButtonSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonSetting.Image = global::MYAPPCS.Properties.Resources.setting;
-            this.ButtonSetting.Location = new System.Drawing.Point(183, 10);
-            this.ButtonSetting.Name = "ButtonSetting";
-            this.ButtonSetting.Padding = new System.Windows.Forms.Padding(3);
-            this.ButtonSetting.Size = new System.Drawing.Size(25, 23);
-            this.ButtonSetting.TabIndex = 2;
-            this.ButtonSetting.UseVisualStyleBackColor = true;
-            this.ButtonSetting.Click += new System.EventHandler(this.ButtonSetting_Click);
-            // 
             // ButtonRefresh
             // 
             this.ButtonRefresh.FlatAppearance.BorderSize = 0;
             this.ButtonRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRefresh.Image = global::MYAPPCS.Properties.Resources.refresh1;
-            this.ButtonRefresh.Location = new System.Drawing.Point(177, 99);
+            this.ButtonRefresh.Location = new System.Drawing.Point(129, 126);
             this.ButtonRefresh.Name = "ButtonRefresh";
             this.ButtonRefresh.Size = new System.Drawing.Size(39, 33);
             this.ButtonRefresh.TabIndex = 1;
             this.ButtonRefresh.UseVisualStyleBackColor = true;
             this.ButtonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
             // 
+            // PanelTitle
+            // 
+            this.PanelTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(32)))), ((int)(((byte)(61)))));
+            this.PanelTitle.Controls.Add(this.LabelRefresh);
+            this.PanelTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelTitle.Location = new System.Drawing.Point(0, 0);
+            this.PanelTitle.Name = "PanelTitle";
+            this.PanelTitle.Size = new System.Drawing.Size(219, 42);
+            this.PanelTitle.TabIndex = 1;
+            // 
             // LabelRefresh
             // 
             this.LabelRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LabelRefresh.AutoSize = true;
-            this.LabelRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelRefresh.Font = new System.Drawing.Font("Calibri", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelRefresh.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.LabelRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LabelRefresh.Location = new System.Drawing.Point(48, 7);
             this.LabelRefresh.Name = "LabelRefresh";
-            this.LabelRefresh.Size = new System.Drawing.Size(129, 25);
+            this.LabelRefresh.Size = new System.Drawing.Size(108, 24);
             this.LabelRefresh.TabIndex = 0;
             this.LabelRefresh.Text = "App System";
             this.LabelRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -566,11 +543,13 @@ namespace MYAPPCS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 706);
+            this.ClientSize = new System.Drawing.Size(1362, 688);
             this.Controls.Add(this.PanelMain);
             this.Controls.Add(this.PanelFooter);
             this.Controls.Add(this.PanelHeader);
             this.Controls.Add(this.PanelSideBar);
+            this.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IsMdiContainer = true;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMain";
@@ -578,6 +557,7 @@ namespace MYAPPCS
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.PanelMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TabControlMain)).EndInit();
             this.PanelStatusBar.ResumeLayout(false);
             this.PanelStatusBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox3)).EndInit();
@@ -616,10 +596,6 @@ namespace MYAPPCS
         internal System.Windows.Forms.PictureBox PictureBoxSignal;
         internal System.Windows.Forms.Label LabelSignal;
         internal System.Windows.Forms.ProgressBar ProgressBarLoad;
-        internal System.Windows.Forms.Button ButtonMinimize;
-        internal System.Windows.Forms.Button ButtonClose;
-        internal System.Windows.Forms.Panel PanelFormFill;
-        internal System.Windows.Forms.Panel PanelSparator;
         internal System.Windows.Forms.Panel PanelFooter;
         internal System.Windows.Forms.Label Label5;
         internal System.Windows.Forms.Panel PanelHeader;
@@ -643,8 +619,9 @@ namespace MYAPPCS
         internal System.Windows.Forms.Button ButtonRefresh;
         internal System.Windows.Forms.Label LabelRefresh;
         internal System.Windows.Forms.Timer TimerMain;
-
-       
+        internal System.Windows.Forms.Button ButtonConnect;
+        internal System.Windows.Forms.Button ButtonHelp;
+        private DevExpress.XtraTab.XtraTabControl TabControlMain;
     }
 }
 
