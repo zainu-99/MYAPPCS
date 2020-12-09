@@ -25,6 +25,7 @@ namespace MYAPPCS
             if (init)
             {
                 SqlService.SetConnection = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"" + pathapp + "\\DatabaseLocal.mdf\";Integrated Security=True";
+                //SqlService.SetConnection = "Data Source=ANNAJIYAH\\SQLEXPRESS;Initial Catalog=MYAPP;User ID=sa;Password=123";
                 GetDesignColor();
                 SetDesignColor();
                 Close();

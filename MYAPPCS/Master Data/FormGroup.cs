@@ -40,6 +40,12 @@ namespace MYAPPCS
             dgv.DataSource = SqlService.GetDataTable(query);
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.RowHeadersVisible = false;
+            dgv.Columns["id"].Visible = false;
+            dgv.Columns["created_at"].Visible = false;
+            dgv.Columns["updated_at"].Visible = false;
+            dgv.Columns["id"].Visible = false;
+            dgv.Columns["name"].HeaderText = "Name";
+            dgv.Columns["remark"].HeaderText = "Remark";
             dgv.AllowUserToAddRows = false;
             dgv.BorderStyle = BorderStyle.None;
             dgv.EnableHeadersVisualStyles = false;
@@ -105,7 +111,7 @@ namespace MYAPPCS
         private void ButtonGroupLevel_Click(object sender, EventArgs e)
         {
             var formMain = (FormMain)GetOpenForm.GetForm("FormMain");
-            formMain.ShowFormToPanel(new FormGroupLevel());
+            formMain.ShowFormToTabPage(new FormGroupLevel());
         }
 
         private void TextBoxSearch_TextChanged(object sender, EventArgs e)

@@ -29,24 +29,24 @@ namespace MYAPPCS.Helper
                 return null;
             }
         }
-        //public static DataSet GetDataSet(String query, String tableName = "Table")
-        //{
-        //    var con = new SqlConnection(SetConnection);
-        //    con.Open();
-        //    try
-        //    {
-        //        var adapter = new SqlDataAdapter(query, con);
-        //        if (ds.Tables.Contains(tableName))
-        //            ds.Tables.Remove(tableName);
-        //        adapter.Fill(ds, tableName);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.Write(e.Message);
-        //    }
-        //    con.Close();
-        //    return ds;
-        //}
+        public static DataSet GetDataSet(String query, String tableName = "Table")
+        {
+            var con = new SqlConnection(SetConnection);
+            con.Open();
+            try
+            {
+                var adapter = new SqlDataAdapter(query, con);
+                if (ds.Tables.Contains(tableName))
+                    ds.Tables.Remove(tableName);
+                adapter.Fill(ds, tableName);
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+            }
+            con.Close();
+            return ds;
+        }
         public static DataTable GetDataTable(String query, String tableName = "Table")
         {
             var con = new SqlConnection(SetConnection);
@@ -78,18 +78,24 @@ namespace MYAPPCS.Helper
                 return null;
             }
         }
-        public static void ExecuteQuery(String query)
+        public static ExecuteQueryReturn ExecuteQuery(String query)
         {
+            var eqr = new ExecuteQueryReturn();
             try
             {
                 var con = new SqlConnection(SetConnection);
                 con.Open();
                 var sqlcom = new SqlCommand(query, con);
                 sqlcom.ExecuteNonQuery();
+                eqr.Message = "";
+                eqr.Success = true;
+                return eqr;
             }
             catch (Exception e)
             {
-                Console.Write(e.Message);
+                eqr.Message = e.Message;
+                eqr.Success = false;
+                return eqr;
             }
         }
         public static ModSqlDataReader GetDataReader(String query)
@@ -128,6 +134,11 @@ namespace MYAPPCS.Helper
             this.sqlDataReader = sqlDataReader;
             this.sqlConnection = sqlConnection;
         }
+    }
+    class ExecuteQueryReturn
+    {
+        public Boolean Success { set; get; }
+        public String Message { set; get; }
     }
 
 }

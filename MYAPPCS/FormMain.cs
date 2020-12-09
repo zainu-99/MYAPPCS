@@ -55,7 +55,7 @@ namespace MYAPPCS
         {
             return (obj == null) ? "" : obj.ToString();
         }
-        public void ShowFormToPanel(Form form,String rolename=null)
+        public void ShowFormToTabPage(Form form,String rolename=null)
         {
             if (rolename != null) form.Tag = rolename ;
             if (!AuthHelper.GetAutUserView(form.Tag.ToString()) && NothingString(form.Tag) != "")
@@ -103,6 +103,8 @@ namespace MYAPPCS
                         if (item.Tag.ToString() == "ButtonEdit" && !AuthHelper.GetAutUserEdit(((Form)sender).Tag.ToString()))
                             item.Visible = false;
                         if (item.Tag.ToString() == "ButtonDelete" && !AuthHelper.GetAutUserDelete(((Form)sender).Tag.ToString()))
+                            item.Visible = false;
+                        if (item.Tag.ToString() == "ButtonPrint" && !AuthHelper.GetAutUserPrint(((Form)sender).Tag.ToString()))
                             item.Visible = false;
 
                         //Design Color
@@ -228,7 +230,7 @@ namespace MYAPPCS
                 var frm = new Form();
                 frm = CreateObjectInstance(FormName);
                 frm.Name = FormName;
-                ShowFormToPanel(frm);
+                ShowFormToTabPage(frm);
             }
         }
         private Form CreateObjectInstance(String objectName)
@@ -243,6 +245,21 @@ namespace MYAPPCS
                 form = new Form();
             }
             return form;
+        }
+        public Form GetFormInTabControl(string FormName)
+        {
+            try
+            {
+                var forms = TabControlMain.TabPages.Where(a => a.Text == FormName).FirstOrDefault().Controls.Find(FormName, false);
+                if (forms.Count() > 0)
+                    return (forms[0] as Form);
+                else
+                    return null;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -295,7 +312,7 @@ namespace MYAPPCS
         }
         private void ButtonSetting_Click(object sender, EventArgs e)
         {
-            ShowFormToPanel(new FormAccount());
+            ShowFormToTabPage(new FormAccount());
         }
 
         private void ButtonRefresh_Click(object sender, EventArgs e)
@@ -304,7 +321,7 @@ namespace MYAPPCS
         }
         private void btnNotif_Click(object sender, EventArgs e)
         {
-            ShowFormToPanel(new FormChatting());
+            ShowFormToTabPage(new FormChatting());
         }
 
         private void ButtonHelp_Click(object sender, EventArgs e)

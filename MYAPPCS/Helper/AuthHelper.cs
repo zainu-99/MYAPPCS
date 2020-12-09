@@ -47,6 +47,20 @@ namespace MYAPPCS.Helper
             else
                 return false;
         }
+        public static Boolean GetAutUserPrint(String RoleName)
+        {
+            if (GetAuthUser.Select("name = '" + RoleName + "' and allow_print=1").Count() > 0)
+                return true;
+            else
+                return false;
+        }
+        public static Boolean GetAutUserCustom(String RoleName)
+        {
+            if (GetAuthUser.Select("name = '" + RoleName + "' and allow_custom_access=1").Count() > 0)
+                return true;
+            else
+                return false;
+        }
 
 
     }

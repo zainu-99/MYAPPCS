@@ -114,7 +114,8 @@ namespace MYAPPCS
             TextBoxName.Text = dgv.CurrentRow.Cells[2].Value.ToString();
             TextBoxNohp.Text = dgv.CurrentRow.Cells[3].Value.ToString();
             TextBoxEmail.Text = dgv.CurrentRow.Cells[4].Value.ToString();
-            TextBoxAddress.Text = dgv.CurrentRow.Cells[5].Value.ToString();
+            TextBoxAddress.Visible = false;
+
             try
             {
                 var bytes = SqlService.GetDataTable("select avatar from users where id =" + id_user).Rows[0][0];
@@ -125,7 +126,7 @@ namespace MYAPPCS
             {
 
             }
-            TextBoxPassword.Text = dgv.CurrentRow.Cells[10].Value.ToString();
+            TextBoxPassword.Text = dgv.CurrentRow.Cells[8].Value.ToString();
             if (dgv.CurrentRow.Cells[6].Value.ToString() == "1")
                 RadioButtonAktif.Checked = true;
             else
@@ -139,11 +140,6 @@ namespace MYAPPCS
             ButtonSave.Enabled = true;
         }
 
-        private void ButtonRoleGroup_Click(object sender, EventArgs e)
-        {
-            var formMain = (FormMain)GetOpenForm.GetForm("FormMain");
-            formMain.ShowFormToPanel(new FormUserGroup());
-        }
 
         private void FormUser_Load(object sender, EventArgs e)
         {
@@ -152,19 +148,25 @@ namespace MYAPPCS
 
         private void TextBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            ShowDataGridView(TextBoxSearch.Text);
+            ShowNavPageData();
+        }
+
+        private void ComboBoxEntries_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = false;
         }
 
         void Reload()
         {
             GroupBoxInputData.Enabled = false;
-            ShowDataGridView("");
+            ShowNavPageData();
             TextBoxUserId.Text = "";
             TextBoxName.Text = "";
             TextBoxNohp.Text = "";
             TextBoxEmail.Text = "";
             TextBoxAddress.Text = "";
             TextBoxPassword.Text = "";
+            TextBoxPassword.Visible = true;
             ButtonEdit.Enabled = false;
             ButtonDelete.Enabled = false;
             ButtonSave.Enabled = false;
@@ -172,11 +174,75 @@ namespace MYAPPCS
             status = "";
             id_user = "";
         }
-        void ShowDataGridView(String txtSearch)
+
+        private void ComboBoxEntries_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String query = "select id,userid,name,nohp,email,address,status,gender,created_at,updated_at,password_noencrypt from users where name like '%" + txtSearch + "%' order by name asc";
+            ShowNavPageData();
+        }
+
+        private void bindingSourcePaging_PositionChanged(object sender, EventArgs e)
+        {
+            ShowNavPageData();
+        }
+
+        private void ButtonUserGroup_Click(object sender, EventArgs e)
+        {
+            var formMain = (FormMain)GetOpenForm.GetForm("FormMain");
+            formMain.ShowFormToTabPage(new FormUserGroup());
+            var formRoleGroup = (formMain.GetFormInTabControl("FormUserGroup") as FormUserGroup);
+            formRoleGroup.TextBoxUser.Text = dgv.CurrentRow.Cells["userid"].Value.ToString();
+            formRoleGroup.TextBoxUser.Text += "-" + dgv.CurrentRow.Cells["name"].Value.ToString();
+            formRoleGroup.TextBoxUser.Tag = dgv.CurrentRow.Cells[0].Value;
+        }
+
+        private void ButtonUserAccess_Click(object sender, EventArgs e)
+        {
+            var formMain = (FormMain)GetOpenForm.GetForm("FormMain");
+            formMain.ShowFormToTabPage(new FormUserRole());
+            var formRoleGroup = (formMain.GetFormInTabControl("FormUserRole") as FormUserRole);
+            formRoleGroup.TextBoxUser.Text = dgv.CurrentRow.Cells["userid"].Value.ToString();
+            formRoleGroup.TextBoxUser.Text += "-" + dgv.CurrentRow.Cells["name"].Value.ToString();
+            formRoleGroup.TextBoxUser.Tag = dgv.CurrentRow.Cells[0].Value;
+        }
+
+        void ShowNavPageData()
+        {
+            dgv.DataSource = null;
+            var query = "select count(id) from Users where name like '%" + TextBoxSearch.Text + "%'";
+            var datatabel = SqlService.GetDataTable(query);
+            var dtable = new DataTable();
+            var dc = new DataColumn();
+            dc.ColumnName = "Paging";
+            dc.DataType = typeof(string);
+            dtable.Columns.Add(dc);
+            var count = Math.Ceiling((Double.Parse(datatabel.Rows[0].ItemArray[0].ToString()) / Int32.Parse(ComboBoxEntries.Text)));
+            for (int i = 0; i < count; i++)
+            {
+                DataRow dr = dtable.NewRow();
+                dr[0] = 1;
+                dtable.Rows.Add(dr);
+            }
+            bindingSourcePaging.DataSource = dtable;
+            BindingNavigatorPaging.BindingSource = bindingSourcePaging;
+            if (bindingSourcePaging.Position >= 0)
+            {
+                ShowDataGridView();
+            }
+        }
+        void ShowDataGridView()
+        {
+            String query = "select id,userid,name,nohp,email,address,status,gender,password_noencrypt from users where name like '%" + TextBoxSearch.Text + "%' order by name asc OFFSET " + bindingSourcePaging.Position * Int32.Parse(ComboBoxEntries.Text) + " ROWS FETCH NEXT " + ComboBoxEntries.Text + " ROWS ONLY;";
             dgv.DataSource = SqlService.GetDataTable(query);
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.Columns["id"].Visible = false;
+            dgv.Columns["password_noencrypt"].Visible = false;
+            dgv.Columns["userid"].HeaderText = "UserID";
+            dgv.Columns["name"].HeaderText = "Name";
+            dgv.Columns["nohp"].HeaderText = "Phone";
+            dgv.Columns["email"].HeaderText = "Email";
+            dgv.Columns["address"].HeaderText = "Address";
+            dgv.Columns["status"].HeaderText = "Status";
+            dgv.Columns["gender"].HeaderText = "Gender";
             dgv.RowHeadersVisible = false;
             dgv.AllowUserToAddRows = false;
             dgv.BorderStyle = BorderStyle.None;

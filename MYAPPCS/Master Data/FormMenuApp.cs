@@ -16,6 +16,7 @@ namespace MYAPPCS
     {
 
         String IdMenu = "0";
+        int ctr = 0;
         public FormMenuApp()
         {
             InitializeComponent();
@@ -35,9 +36,9 @@ namespace MYAPPCS
 
         void ShowCBTag()
         {
-            ComboBoxTag.DataSource = SqlService.GetDataTable("select * from Roles order by nama asc");
-            ComboBoxTag.ValueMember = "nama";
-            ComboBoxTag.DisplayMember = "nama";
+            ComboBoxTag.DataSource = SqlService.GetDataTable("select * from Roles order by name asc");
+            ComboBoxTag.ValueMember = "name";
+            ComboBoxTag.DisplayMember = "name";
         }
 
         void ShowParentMenu()
@@ -79,9 +80,9 @@ namespace MYAPPCS
         {
             foreach (DataRow dtrow in dt.Select("IDParentMenu  " + idParent))
             {
-                AddToDgv(dtrow, levelTag + "* ");
+                AddToDgv(dtrow, levelTag + "➧ ");
                 if (dt.Select("IDParentMenu = " + dtrow[0]).Count() > 0)
-                    GetGroupLevel(dt, "= " + dtrow[0], levelTag + "-----");
+                    GetGroupLevel(dt, "= " + dtrow[0], levelTag + "     ");
             }
 
         }
@@ -190,9 +191,22 @@ namespace MYAPPCS
             ButtonSave.Enabled = true;
         }
 
-        private void TextBoxSearch_TextChanged(object sender, EventArgs e)
+        private void TextBoxSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ShowDataGridView(TextBoxSearch.Text);
+            if( e.KeyChar == (char)13)
+            {
+                for(int i = ctr;i< dgv.Rows.Count-1;i++)
+                {
+                    ctr = i + 1;
+                    if(dgv.Rows[i].Cells["MenuTag"].Value.ToString().ToLower().Contains(TextBoxSearch.Text) || dgv.Rows[i].Cells["MenuText"].Value.ToString().ToLower().Contains(TextBoxSearch.Text) || dgv.Rows[i].Cells["OpenForm"].Value.ToString().ToLower().Contains(TextBoxSearch.Text))
+                    {
+                        dgv.Rows[i].Selected = true;
+                        dgv.FirstDisplayedScrollingRowIndex = i;
+                        return;
+                    }
+                }
+                ctr = 0;
+            }
         }
     }
 }

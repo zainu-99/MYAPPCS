@@ -44,7 +44,6 @@ E:\Project\visual studio\MYAPPCS\MYAPPCS\obj\Debug\MYAPPCS.FormGroupLevel.resour
 E:\Project\visual studio\MYAPPCS\MYAPPCS\obj\Debug\MYAPPCS.FormMenuApp.resources
 E:\Project\visual studio\MYAPPCS\MYAPPCS\obj\Debug\MYAPPCS.FormRole.resources
 E:\Project\visual studio\MYAPPCS\MYAPPCS\obj\Debug\MYAPPCS.FormRoleGroup.resources
-E:\Project\visual studio\MYAPPCS\MYAPPCS\obj\Debug\MYAPPCS.FormUserDataPopUp.resources
 E:\Project\visual studio\MYAPPCS\MYAPPCS\obj\Debug\MYAPPCS.FormUserGroup.resources
 E:\Project\visual studio\MYAPPCS\MYAPPCS\obj\Debug\MYAPPCS.FormUserRole.resources
 E:\Project\visual studio\MYAPPCS\MYAPPCS\obj\Debug\MYAPPCS.FormUser.resources

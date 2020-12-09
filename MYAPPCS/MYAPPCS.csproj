@@ -109,12 +109,6 @@
     <Compile Include="Log\FormLog.Designer.cs">
       <DependentUpon>FormLog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Sistem Admin\FormUserDataPopUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sistem Admin\FormUserDataPopUp.Designer.cs">
-      <DependentUpon>FormUserDataPopUp.cs</DependentUpon>
-    </Compile>
     <Compile Include="Master Data\FormMenuApp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,9 +238,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sistem Admin\FormRoleGroup.resx">
       <DependentUpon>FormRoleGroup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sistem Admin\FormUserDataPopUp.resx">
-      <DependentUpon>FormUserDataPopUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistem Admin\FormUserGroup.resx">
       <DependentUpon>FormUserGroup.cs</DependentUpon>
@@ -427,6 +418,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>DatabaseLocal.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\ic_menu.png" />
     <None Include="Resources\help.png" />
     <None Include="Resources\connect.png" />
     <None Include="Resources\loading-animation11.gif" />

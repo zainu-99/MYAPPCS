@@ -29,13 +29,11 @@ namespace MYAPPCS
             showDataGridView("");
         }
 
-        private void FormUserGroup_Load(object sender, EventArgs e)
-        {
-            Reload();
-        }
         void showDataGridView(String txtSearch)
         {
-            String query = "select a.id,CONCAT(d.nama,' - ',a.remark) as [group],CONCAT(f.nama,' - ',e.remark)as parent,a.remark,IIF((select id_user from UserGroupLevel where id_user ='" + TextBoxUser.Tag + "' and id_group_level = b.id_group_level) is null,0,1) as IsJoin from GroupLevel a left join (select * from UserGroupLevel where id_user='" + TextBoxUser.Tag + "') b on a.id = b.id_group_level left join  Groups as d on a.id_group = d.id left join GroupLevel as e on a.id_parent =e.id left join Groups as f on e.id_group = f.id";
+            String query = "select a.id,CONCAT(d.name,' - ',a.remark) as [group],CONCAT(f.name,' - ',e.remark)as parent,a.remark,a.id_parent,IIF((select id_user from UserGroupLevel where id_user ='" + TextBoxUser.Tag + "' and id_group_level = b.id_group_level) is null,0,1) as IsJoin from GroupLevel a left join (select * from UserGroupLevel where id_user='" + TextBoxUser.Tag + "') b on a.id = b.id_group_level left join  Groups as d on a.id_group = d.id left join GroupLevel as e on a.id_parent =e.id left join Groups as f on e.id_group = f.id";
+            var dt = SqlService.GetDataTable(query);
+            GetGroupLevel(dt, "id_parent is Null", "");
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.RowHeadersVisible = false;
             dgv.AllowUserToAddRows = false;
@@ -44,10 +42,18 @@ namespace MYAPPCS
             dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(247, 255, 253);
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            foreach (DataRow row in SqlService.GetDataTable(query).Rows)
+        }
+        void GetGroupLevel(DataTable DT, String filter, String levelTag)
+        {
+            foreach (DataRow dtrow in DT.Select(filter))
             {
-                dgv.Rows.Add(row[0], row[1], row[2], row[3], row[4]);
+                AddToDgv(dtrow, levelTag + "➧ ");
+                GetGroupLevel(DT, "id_parent = " + dtrow[0], levelTag + "     ");
             }
+        }
+        void AddToDgv(DataRow dr, String levelTag)
+        {
+            dgv.Rows.Add(dr[0], levelTag + dr[1], dr[2], dr[3], dr[5]);
         }
 
         private void ButtonRefresh_Click(object sender, EventArgs e)
@@ -55,33 +61,25 @@ namespace MYAPPCS
             Reload();
         }
 
-        private void TextBoxUser_Click(object sender, EventArgs e)
-        {
-            var popupuser = new FormUserDataPopUp();
-            popupuser.SetPassingTextBox(TextBoxUser);
-            popupuser.ShowDialog();
-        }
-
         private void TextBoxUser_TextChanged(object sender, EventArgs e)
         {
             dgv.Rows.Clear();
-            showDataGridView("");
         }
 
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (TextBoxUser.Tag != null)
             {
-                if (e.RowIndex >= 0 && e.ColumnIndex == 4)
-                    if ((int)dgv.Rows[e.RowIndex].Cells[4].Value == 0)
+                if (e.ColumnIndex == dgv.Columns["Join"].Index)                   
+                    if ((int)dgv.Rows[e.RowIndex].Cells["Join"].Value==0)
                     {
                         SqlService.ExecuteQuery("insert into UserGroupLevel (id_user,id_group_level) values('" + TextBoxUser.Tag.ToString() + "','" + dgv.Rows[e.RowIndex].Cells[0].Value.ToString() + "')");
-                        dgv.Rows[e.RowIndex].Cells[4].Value = 1;
+                        dgv.Rows[e.RowIndex].Cells["Join"].Value = 1;
                     }
                     else
                     {
                         SqlService.ExecuteQuery("delete from UserGroupLevel where id_user = '" + TextBoxUser.Tag + "' and id_group_level = '" + dgv.Rows[e.RowIndex].Cells[0].Value + "'");
-                        dgv.Rows[e.RowIndex].Cells[4].Value = 0;
+                        dgv.Rows[e.RowIndex].Cells["Join"].Value = 0;
 
                     }
             }

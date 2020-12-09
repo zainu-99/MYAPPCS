@@ -124,7 +124,6 @@
             this.TextBoxUser.ReadOnly = true;
             this.TextBoxUser.Size = new System.Drawing.Size(671, 24);
             this.TextBoxUser.TabIndex = 6;
-            this.TextBoxUser.Click += new System.EventHandler(this.TextBoxUser_Click);
             this.TextBoxUser.TextChanged += new System.EventHandler(this.TextBoxUser_TextChanged);
             // 
             // Label5
@@ -245,7 +244,6 @@
             this.Name = "FormUserGroup";
             this.Tag = "User Group";
             this.Text = "FormUserGroup";
-            this.Load += new System.EventHandler(this.FormUserGroup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.GroupBoxInputData.ResumeLayout(false);
             this.GroupBoxInputData.PerformLayout();

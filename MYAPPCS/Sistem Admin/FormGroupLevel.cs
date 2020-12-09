@@ -14,6 +14,8 @@ namespace MYAPPCS
     public partial class FormGroupLevel : Form
     {
         String id_group_level = "-1";
+        DataTable dt = new DataTable();
+        int ctr = 0;
         public FormGroupLevel()
         {
             InitializeComponent();
@@ -26,25 +28,24 @@ namespace MYAPPCS
 
         void ShowGroup()
         {
-            var query = "select id,concat(nama,' - ',remark) as info from Groups";
+            var query = "select id,concat(name,' - ',remark) as info from Groups";
             ComboBoxGroup.DataSource = SqlService.GetDataTable(query);
             ComboBoxGroup.ValueMember = "id";
             ComboBoxGroup.DisplayMember = "info";
         }
         void ShowGroupLevel()
         {
-            var query = "select '' as id,'No Parent' as info union all select a.id,concat(b.nama,' - ',a.remark) as info from GroupLevel as a left join Groups as b on b.id = a.id_group left join GroupLevel c on c.id = a.id_parent  where a.ID <> " + id_group_level + " and (a.id_parent is null or a.id_parent <> " + id_group_level + ")";
+            var query = "select '' as id,'No Parent' as info union all select a.id,concat(b.name,' - ',a.remark) as info from GroupLevel as a left join Groups as b on b.id = a.id_group left join GroupLevel c on c.id = a.id_parent  where a.ID <> " + id_group_level + " and (a.id_parent is null or a.id_parent <> " + id_group_level + ")";
             ComboBoxParentGroup.DataSource = SqlService.GetDataTable(query);
             ComboBoxParentGroup.ValueMember = "id";
             ComboBoxParentGroup.DisplayMember = "info";
         }
         void ShowDataGridView(String txtSearch)
         {
-            var dt = new DataTable();
-            String query = "select a.id,b.nama,a.remark,concat(d.nama,' - ',c.remark) as parent,a.id_group,a.id_parent from GroupLevel as a left join Groups as b on b.id = a.id_group left join GroupLevel c on c.id = a.id_parent left join Groups as d on c.id_group=d.id where a.remark like '%" + txtSearch + "%' order by b.nama";
+            String query = "select a.id,b.name,a.remark,concat(d.name,' - ',c.remark) as parent,a.id_group,a.id_parent,'Role Group' as RoleGrouop from GroupLevel as a left join Groups as b on b.id = a.id_group left join GroupLevel c on c.id = a.id_parent left join Groups as d on c.id_group=d.id where a.remark like '%" + txtSearch + "%' order by b.name";
             dt = SqlService.GetDataTable(query);
             dgv.Rows.Clear();
-            GetGroupLevel(dt, " is Null", "");
+            GetGroupLevel(dt, "id_parent is Null", "");
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.RowHeadersVisible = false;
             dgv.AllowUserToAddRows = false;
@@ -55,20 +56,18 @@ namespace MYAPPCS
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
         }
 
-        void GetGroupLevel(DataTable DT, String idParent, String levelTag)
+        void GetGroupLevel(DataTable DT, String filter, String levelTag)
         {
-            foreach (DataRow dtrow in DT.Select("id_parent  " + idParent))
+            foreach (DataRow dtrow in DT.Select(filter))
             {
-                AddToDgv(dtrow, levelTag + "* ");
-                if (DT.Select("id_parent = " + dtrow[0]).Count() > 0)
-                    GetGroupLevel(DT, "= " + dtrow[0], levelTag + "-----");
+                AddToDgv(dtrow, levelTag + "➧ ");
+                GetGroupLevel(DT, "id_parent = " + dtrow[0], levelTag + "     ");
             }
-
         }
 
         void AddToDgv(DataRow dr, String levelTag)
         {
-            dgv.Rows.Add(dr[0], levelTag + dr[1], dr[2], dr[3], dr[4], dr[5]);
+            dgv.Rows.Add(dr[0], levelTag + dr[1], dr[2], dr[3], dr[4], dr[5], dr[6]);
         }
 
         void Reload()
@@ -154,11 +153,33 @@ namespace MYAPPCS
             ButtonEdit.Enabled = true;
             ButtonDelete.Enabled = true;
             ButtonSave.Enabled = true;
+            if((e.ColumnIndex == dgv.Columns["RoleGroup"].Index) )
+            {
+                var formMain = (FormMain)GetOpenForm.GetForm("FormMain");
+                formMain.ShowFormToTabPage(new FormRoleGroup());
+                var formRoleGroup = (formMain.GetFormInTabControl("FormRoleGroup") as FormRoleGroup);
+                formRoleGroup.textBoxGroupLevel.Text = dt.Rows[dgv.CurrentRow.Index].ItemArray[1].ToString();
+                formRoleGroup.textBoxGroupLevel.Text += "-" + dgv.CurrentRow.Cells[2].Value.ToString();
+                formRoleGroup.textBoxGroupLevel.Tag = dgv.CurrentRow.Cells[0].Value;
+            }
         }
 
-        private void TextBoxSearch_TextChanged(object sender, EventArgs e)
+        private void TextBoxSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            ShowDataGridView(TextBoxSearch.Text);
+            if (e.KeyChar == (char)13)
+            {
+                for (int i = ctr; i < dgv.Rows.Count - 1; i++)
+                {
+                    ctr = i + 1;
+                    if (dgv.Rows[i].Cells["Group"].Value.ToString().ToLower().Contains(TextBoxSearch.Text) || dgv.Rows[i].Cells["Remark"].Value.ToString().ToLower().Contains(TextBoxSearch.Text) || dgv.Rows[i].Cells["Parent"].Value.ToString().ToLower().Contains(TextBoxSearch.Text))
+                    {
+                        dgv.Rows[i].Selected = true;
+                        dgv.FirstDisplayedScrollingRowIndex = i;
+                        return;
+                    }
+                }
+                ctr = 0;
+            }
         }
     }
 }

@@ -348,7 +348,7 @@ namespace MYAPPCS
             // PanelMenu
             // 
             this.PanelMenu.AutoScroll = true;
-            this.PanelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.PanelMenu.BackColor = System.Drawing.Color.Teal;
             this.PanelMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.PanelMenu.Controls.Add(this.PanelInfo);
             this.PanelMenu.Controls.Add(this.MenuApp);
@@ -357,7 +357,6 @@ namespace MYAPPCS
             this.PanelMenu.Location = new System.Drawing.Point(0, 204);
             this.PanelMenu.Margin = new System.Windows.Forms.Padding(9, 3, 9, 3);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.PanelMenu.Size = new System.Drawing.Size(219, 484);
             this.PanelMenu.TabIndex = 5;
             // 
@@ -365,9 +364,9 @@ namespace MYAPPCS
             // 
             this.PanelInfo.Controls.Add(this.LabelVersion);
             this.PanelInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelInfo.Location = new System.Drawing.Point(3, 444);
+            this.PanelInfo.Location = new System.Drawing.Point(0, 444);
             this.PanelInfo.Name = "PanelInfo";
-            this.PanelInfo.Size = new System.Drawing.Size(213, 40);
+            this.PanelInfo.Size = new System.Drawing.Size(219, 40);
             this.PanelInfo.TabIndex = 1;
             // 
             // LabelVersion
@@ -378,7 +377,7 @@ namespace MYAPPCS
             this.LabelVersion.ForeColor = System.Drawing.Color.White;
             this.LabelVersion.Location = new System.Drawing.Point(0, 0);
             this.LabelVersion.Name = "LabelVersion";
-            this.LabelVersion.Size = new System.Drawing.Size(213, 40);
+            this.LabelVersion.Size = new System.Drawing.Size(219, 40);
             this.LabelVersion.TabIndex = 1;
             this.LabelVersion.Text = "Version: 1.0.0";
             this.LabelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -386,13 +385,13 @@ namespace MYAPPCS
             // MenuApp
             // 
             this.MenuApp.BackColor = System.Drawing.Color.Transparent;
-            this.MenuApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MenuApp.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MenuApp.GripMargin = new System.Windows.Forms.Padding(19);
             this.MenuApp.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.MenuApp.Location = new System.Drawing.Point(3, 0);
+            this.MenuApp.Location = new System.Drawing.Point(0, 0);
             this.MenuApp.Name = "MenuApp";
-            this.MenuApp.Padding = new System.Windows.Forms.Padding(3, 9, 3, 0);
-            this.MenuApp.Size = new System.Drawing.Size(213, 211);
+            this.MenuApp.Padding = new System.Windows.Forms.Padding(1);
+            this.MenuApp.Size = new System.Drawing.Size(219, 204);
             this.MenuApp.TabIndex = 0;
             this.MenuApp.Text = "MenuStrip";
             // 
@@ -621,7 +620,7 @@ namespace MYAPPCS
         internal System.Windows.Forms.Timer TimerMain;
         internal System.Windows.Forms.Button ButtonConnect;
         internal System.Windows.Forms.Button ButtonHelp;
-        private DevExpress.XtraTab.XtraTabControl TabControlMain;
+        public DevExpress.XtraTab.XtraTabControl TabControlMain;
     }
 }
 

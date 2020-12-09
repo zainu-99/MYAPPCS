@@ -31,19 +31,19 @@
             this.Label1 = new System.Windows.Forms.Label();
             this.CheckBoxRemember = new System.Windows.Forms.CheckBox();
             this.PanelPassword = new System.Windows.Forms.Panel();
-            this.PictureBox2 = new System.Windows.Forms.PictureBox();
             this.TextBoxPassword = new System.Windows.Forms.TextBox();
             this.PanelUserId = new System.Windows.Forms.Panel();
-            this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.TextBoxUserId = new System.Windows.Forms.TextBox();
             this.LabelUserId = new System.Windows.Forms.Label();
             this.LabelPassword = new System.Windows.Forms.Label();
             this.Label5 = new System.Windows.Forms.Label();
             this.ButtonLogin = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.Button();
+            this.PictureBox2 = new System.Windows.Forms.PictureBox();
+            this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.PanelPassword.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
             this.PanelUserId.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,7 +72,7 @@
             // 
             // PanelPassword
             // 
-            this.PanelPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelPassword.BackColor = System.Drawing.Color.WhiteSmoke;
             this.PanelPassword.Controls.Add(this.PictureBox2);
             this.PanelPassword.Controls.Add(this.TextBoxPassword);
             this.PanelPassword.Location = new System.Drawing.Point(31, 154);
@@ -80,21 +80,9 @@
             this.PanelPassword.Size = new System.Drawing.Size(332, 39);
             this.PanelPassword.TabIndex = 26;
             // 
-            // PictureBox2
-            // 
-            this.PictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PictureBox2.Image = global::MYAPPCS.Properties.Resources.key;
-            this.PictureBox2.Location = new System.Drawing.Point(292, 0);
-            this.PictureBox2.Name = "PictureBox2";
-            this.PictureBox2.Padding = new System.Windows.Forms.Padding(7);
-            this.PictureBox2.Size = new System.Drawing.Size(38, 37);
-            this.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBox2.TabIndex = 11;
-            this.PictureBox2.TabStop = false;
-            // 
             // TextBoxPassword
             // 
-            this.TextBoxPassword.BackColor = System.Drawing.Color.White;
+            this.TextBoxPassword.BackColor = System.Drawing.Color.WhiteSmoke;
             this.TextBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxPassword.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPassword.ForeColor = System.Drawing.Color.LightSeaGreen;
@@ -108,7 +96,7 @@
             // 
             // PanelUserId
             // 
-            this.PanelUserId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelUserId.BackColor = System.Drawing.Color.WhiteSmoke;
             this.PanelUserId.Controls.Add(this.PictureBox1);
             this.PanelUserId.Controls.Add(this.TextBoxUserId);
             this.PanelUserId.Location = new System.Drawing.Point(32, 94);
@@ -116,21 +104,9 @@
             this.PanelUserId.Size = new System.Drawing.Size(332, 39);
             this.PanelUserId.TabIndex = 25;
             // 
-            // PictureBox1
-            // 
-            this.PictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PictureBox1.Image = global::MYAPPCS.Properties.Resources.username;
-            this.PictureBox1.Location = new System.Drawing.Point(292, 0);
-            this.PictureBox1.Name = "PictureBox1";
-            this.PictureBox1.Padding = new System.Windows.Forms.Padding(7);
-            this.PictureBox1.Size = new System.Drawing.Size(38, 37);
-            this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBox1.TabIndex = 10;
-            this.PictureBox1.TabStop = false;
-            // 
             // TextBoxUserId
             // 
-            this.TextBoxUserId.BackColor = System.Drawing.Color.White;
+            this.TextBoxUserId.BackColor = System.Drawing.Color.WhiteSmoke;
             this.TextBoxUserId.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxUserId.Font = new System.Drawing.Font("Yu Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxUserId.ForeColor = System.Drawing.Color.LightSeaGreen;
@@ -205,6 +181,30 @@
             this.ButtonClose.UseVisualStyleBackColor = true;
             this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
+            // PictureBox2
+            // 
+            this.PictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PictureBox2.Image = global::MYAPPCS.Properties.Resources.key;
+            this.PictureBox2.Location = new System.Drawing.Point(294, 0);
+            this.PictureBox2.Name = "PictureBox2";
+            this.PictureBox2.Padding = new System.Windows.Forms.Padding(7);
+            this.PictureBox2.Size = new System.Drawing.Size(38, 39);
+            this.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBox2.TabIndex = 11;
+            this.PictureBox2.TabStop = false;
+            // 
+            // PictureBox1
+            // 
+            this.PictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PictureBox1.Image = global::MYAPPCS.Properties.Resources.username;
+            this.PictureBox1.Location = new System.Drawing.Point(294, 0);
+            this.PictureBox1.Name = "PictureBox1";
+            this.PictureBox1.Padding = new System.Windows.Forms.Padding(7);
+            this.PictureBox1.Size = new System.Drawing.Size(38, 39);
+            this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBox1.TabIndex = 10;
+            this.PictureBox1.TabStop = false;
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,9 +229,9 @@
             this.Load += new System.EventHandler(this.FormLogin_Load);
             this.PanelPassword.ResumeLayout(false);
             this.PanelPassword.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).EndInit();
             this.PanelUserId.ResumeLayout(false);
             this.PanelUserId.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

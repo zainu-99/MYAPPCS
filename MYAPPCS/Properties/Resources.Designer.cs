@@ -263,6 +263,16 @@ namespace MYAPPCS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_menu {
+            get {
+                object obj = ResourceManager.GetObject("ic_menu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconmenu {
             get {
                 object obj = ResourceManager.GetObject("iconmenu", resourceCulture);

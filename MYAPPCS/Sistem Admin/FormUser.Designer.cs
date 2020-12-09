@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUser));
             this.PanelButton = new System.Windows.Forms.Panel();
             this.MenuStripAction = new System.Windows.Forms.MenuStrip();
             this.ButtonAdd = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,8 +41,9 @@
             this.ButtonSave = new System.Windows.Forms.ToolStripMenuItem();
             this.ButtonDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.ButtonRefresh = new System.Windows.Forms.ToolStripMenuItem();
-            this.ButtonRoleGroup = new System.Windows.Forms.Button();
             this.GroupBoxInputData = new System.Windows.Forms.GroupBox();
+            this.ButtonUserAccess = new System.Windows.Forms.Button();
+            this.ButtonUserGroup = new System.Windows.Forms.Button();
             this.PanelGender = new System.Windows.Forms.Panel();
             this.RadioButtonPemale = new System.Windows.Forms.RadioButton();
             this.RadioButtonMale = new System.Windows.Forms.RadioButton();
@@ -62,19 +66,38 @@
             this.Label4 = new System.Windows.Forms.Label();
             this.TextBoxUserId = new System.Windows.Forms.TextBox();
             this.Label3 = new System.Windows.Forms.Label();
-            this.Label2 = new System.Windows.Forms.Label();
             this.TextBoxSearch = new System.Windows.Forms.TextBox();
-            this.dgv = new System.Windows.Forms.DataGridView();
             this.Label1 = new System.Windows.Forms.Label();
-            this.ButtonUserGroup = new System.Windows.Forms.Button();
-            this.ButtonUserAccess = new System.Windows.Forms.Button();
+            this.PanelDgv = new System.Windows.Forms.Panel();
+            this.dgv = new System.Windows.Forms.DataGridView();
+            this.Panel1 = new System.Windows.Forms.Panel();
+            this.ComboBoxEntries = new System.Windows.Forms.ComboBox();
+            this.Label11 = new System.Windows.Forms.Label();
+            this.Label10 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.BindingNavigatorPaging = new System.Windows.Forms.BindingNavigator(this.components);
+            this.BindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.BindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.BindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.BindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.BindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.BindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.BindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.BindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.BindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingSourcePaging = new System.Windows.Forms.BindingSource(this.components);
             this.PanelButton.SuspendLayout();
             this.MenuStripAction.SuspendLayout();
             this.GroupBoxInputData.SuspendLayout();
             this.PanelGender.SuspendLayout();
             this.PanelStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).BeginInit();
+            this.PanelDgv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingNavigatorPaging)).BeginInit();
+            this.BindingNavigatorPaging.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePaging)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelButton
@@ -170,21 +193,6 @@
             this.ButtonRefresh.Text = "Refresh";
             this.ButtonRefresh.Click += new System.EventHandler(this.ButtonRefresh_Click);
             // 
-            // ButtonRoleGroup
-            // 
-            this.ButtonRoleGroup.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ButtonRoleGroup.FlatAppearance.BorderSize = 0;
-            this.ButtonRoleGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonRoleGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonRoleGroup.ForeColor = System.Drawing.Color.White;
-            this.ButtonRoleGroup.Location = new System.Drawing.Point(15, 33);
-            this.ButtonRoleGroup.Name = "ButtonRoleGroup";
-            this.ButtonRoleGroup.Size = new System.Drawing.Size(101, 32);
-            this.ButtonRoleGroup.TabIndex = 35;
-            this.ButtonRoleGroup.Text = "User Group";
-            this.ButtonRoleGroup.UseVisualStyleBackColor = false;
-            this.ButtonRoleGroup.Click += new System.EventHandler(this.ButtonRoleGroup_Click);
-            // 
             // GroupBoxInputData
             // 
             this.GroupBoxInputData.Controls.Add(this.ButtonUserAccess);
@@ -208,12 +216,40 @@
             this.GroupBoxInputData.Controls.Add(this.TextBoxUserId);
             this.GroupBoxInputData.Controls.Add(this.Label3);
             this.GroupBoxInputData.Enabled = false;
-            this.GroupBoxInputData.Location = new System.Drawing.Point(15, 70);
+            this.GroupBoxInputData.Location = new System.Drawing.Point(15, 50);
             this.GroupBoxInputData.Name = "GroupBoxInputData";
             this.GroupBoxInputData.Size = new System.Drawing.Size(881, 154);
             this.GroupBoxInputData.TabIndex = 34;
             this.GroupBoxInputData.TabStop = false;
             this.GroupBoxInputData.Text = "Form Input Data";
+            // 
+            // ButtonUserAccess
+            // 
+            this.ButtonUserAccess.BackColor = System.Drawing.Color.Turquoise;
+            this.ButtonUserAccess.FlatAppearance.BorderSize = 0;
+            this.ButtonUserAccess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonUserAccess.ForeColor = System.Drawing.Color.White;
+            this.ButtonUserAccess.Location = new System.Drawing.Point(750, 93);
+            this.ButtonUserAccess.Name = "ButtonUserAccess";
+            this.ButtonUserAccess.Size = new System.Drawing.Size(98, 29);
+            this.ButtonUserAccess.TabIndex = 24;
+            this.ButtonUserAccess.Text = "User Access";
+            this.ButtonUserAccess.UseVisualStyleBackColor = false;
+            this.ButtonUserAccess.Click += new System.EventHandler(this.ButtonUserAccess_Click);
+            // 
+            // ButtonUserGroup
+            // 
+            this.ButtonUserGroup.BackColor = System.Drawing.Color.DarkCyan;
+            this.ButtonUserGroup.FlatAppearance.BorderSize = 0;
+            this.ButtonUserGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonUserGroup.ForeColor = System.Drawing.Color.White;
+            this.ButtonUserGroup.Location = new System.Drawing.Point(750, 62);
+            this.ButtonUserGroup.Name = "ButtonUserGroup";
+            this.ButtonUserGroup.Size = new System.Drawing.Size(98, 29);
+            this.ButtonUserGroup.TabIndex = 23;
+            this.ButtonUserGroup.Text = "User Group";
+            this.ButtonUserGroup.UseVisualStyleBackColor = false;
+            this.ButtonUserGroup.Click += new System.EventHandler(this.ButtonUserGroup_Click);
             // 
             // PanelGender
             // 
@@ -422,73 +458,15 @@
             this.Label3.TabIndex = 0;
             this.Label3.Text = "User Id";
             // 
-            // Label2
-            // 
-            this.Label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label2.AutoSize = true;
-            this.Label2.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label2.ForeColor = System.Drawing.Color.Teal;
-            this.Label2.Location = new System.Drawing.Point(762, 227);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(40, 16);
-            this.Label2.TabIndex = 33;
-            this.Label2.Text = "Search";
-            // 
             // TextBoxSearch
             // 
             this.TextBoxSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxSearch.Location = new System.Drawing.Point(765, 245);
+            this.TextBoxSearch.Location = new System.Drawing.Point(742, 7);
             this.TextBoxSearch.Name = "TextBoxSearch";
             this.TextBoxSearch.Size = new System.Drawing.Size(176, 24);
             this.TextBoxSearch.TabIndex = 32;
             this.TextBoxSearch.TextChanged += new System.EventHandler(this.TextBoxSearch_TextChanged);
-            // 
-            // dgv
-            // 
-            this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(0, 9, 0, 9);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dgv.Location = new System.Drawing.Point(15, 278);
-            this.dgv.Name = "dgv";
-            this.dgv.ReadOnly = true;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgv.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgv.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Teal;
-            this.dgv.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.RowTemplate.Height = 35;
-            this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(925, 305);
-            this.dgv.TabIndex = 31;
-            this.dgv.Tag = "User";
-            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
             // Label1
             // 
@@ -501,31 +479,227 @@
             this.Label1.TabIndex = 30;
             this.Label1.Text = "Data User";
             // 
-            // ButtonUserGroup
+            // PanelDgv
             // 
-            this.ButtonUserGroup.BackColor = System.Drawing.Color.DarkCyan;
-            this.ButtonUserGroup.FlatAppearance.BorderSize = 0;
-            this.ButtonUserGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonUserGroup.ForeColor = System.Drawing.Color.White;
-            this.ButtonUserGroup.Location = new System.Drawing.Point(750, 62);
-            this.ButtonUserGroup.Name = "ButtonUserGroup";
-            this.ButtonUserGroup.Size = new System.Drawing.Size(98, 29);
-            this.ButtonUserGroup.TabIndex = 23;
-            this.ButtonUserGroup.Text = "User Group";
-            this.ButtonUserGroup.UseVisualStyleBackColor = false;
+            this.PanelDgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PanelDgv.Controls.Add(this.dgv);
+            this.PanelDgv.Controls.Add(this.Panel1);
+            this.PanelDgv.Controls.Add(this.BindingNavigatorPaging);
+            this.PanelDgv.Location = new System.Drawing.Point(13, 279);
+            this.PanelDgv.Name = "PanelDgv";
+            this.PanelDgv.Size = new System.Drawing.Size(926, 300);
+            this.PanelDgv.TabIndex = 37;
             // 
-            // ButtonUserAccess
+            // dgv
             // 
-            this.ButtonUserAccess.BackColor = System.Drawing.Color.Turquoise;
-            this.ButtonUserAccess.FlatAppearance.BorderSize = 0;
-            this.ButtonUserAccess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonUserAccess.ForeColor = System.Drawing.Color.White;
-            this.ButtonUserAccess.Location = new System.Drawing.Point(750, 93);
-            this.ButtonUserAccess.Name = "ButtonUserAccess";
-            this.ButtonUserAccess.Size = new System.Drawing.Size(98, 29);
-            this.ButtonUserAccess.TabIndex = 24;
-            this.ButtonUserAccess.Text = "User Access";
-            this.ButtonUserAccess.UseVisualStyleBackColor = false;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial Narrow", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(0, 9, 0, 9);
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.LightSeaGreen;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dgv.Location = new System.Drawing.Point(6, 71);
+            this.dgv.Name = "dgv";
+            this.dgv.ReadOnly = true;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dgv.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgv.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Teal;
+            this.dgv.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.RowTemplate.Height = 35;
+            this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv.Size = new System.Drawing.Size(912, 226);
+            this.dgv.TabIndex = 33;
+            this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
+            // 
+            // Panel1
+            // 
+            this.Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel1.Controls.Add(this.ComboBoxEntries);
+            this.Panel1.Controls.Add(this.Label11);
+            this.Panel1.Controls.Add(this.Label10);
+            this.Panel1.Controls.Add(this.label13);
+            this.Panel1.Controls.Add(this.TextBoxSearch);
+            this.Panel1.Location = new System.Drawing.Point(0, 28);
+            this.Panel1.Name = "Panel1";
+            this.Panel1.Size = new System.Drawing.Size(925, 37);
+            this.Panel1.TabIndex = 32;
+            // 
+            // ComboBoxEntries
+            // 
+            this.ComboBoxEntries.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxEntries.FormattingEnabled = true;
+            this.ComboBoxEntries.Items.AddRange(new object[] {
+            "10",
+            "25",
+            "50",
+            "100"});
+            this.ComboBoxEntries.Location = new System.Drawing.Point(45, 4);
+            this.ComboBoxEntries.Name = "ComboBoxEntries";
+            this.ComboBoxEntries.Size = new System.Drawing.Size(96, 28);
+            this.ComboBoxEntries.TabIndex = 5;
+            this.ComboBoxEntries.Text = "10";
+            this.ComboBoxEntries.SelectedIndexChanged += new System.EventHandler(this.ComboBoxEntries_SelectedIndexChanged);
+            this.ComboBoxEntries.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ComboBoxEntries_KeyPress);
+            // 
+            // Label11
+            // 
+            this.Label11.AutoSize = true;
+            this.Label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label11.ForeColor = System.Drawing.Color.Teal;
+            this.Label11.Location = new System.Drawing.Point(152, 9);
+            this.Label11.Name = "Label11";
+            this.Label11.Size = new System.Drawing.Size(42, 15);
+            this.Label11.TabIndex = 4;
+            this.Label11.Text = "Entries";
+            // 
+            // Label10
+            // 
+            this.Label10.AutoSize = true;
+            this.Label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label10.ForeColor = System.Drawing.Color.Teal;
+            this.Label10.Location = new System.Drawing.Point(10, 10);
+            this.Label10.Name = "Label10";
+            this.Label10.Size = new System.Drawing.Size(36, 15);
+            this.Label10.TabIndex = 4;
+            this.Label10.Text = "Show";
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Teal;
+            this.label13.Location = new System.Drawing.Point(698, 11);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(42, 15);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Search";
+            // 
+            // BindingNavigatorPaging
+            // 
+            this.BindingNavigatorPaging.AddNewItem = null;
+            this.BindingNavigatorPaging.CountItem = this.BindingNavigatorCountItem;
+            this.BindingNavigatorPaging.DeleteItem = null;
+            this.BindingNavigatorPaging.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.BindingNavigatorMoveFirstItem,
+            this.BindingNavigatorMovePreviousItem,
+            this.BindingNavigatorSeparator,
+            this.BindingNavigatorPositionItem,
+            this.BindingNavigatorCountItem,
+            this.BindingNavigatorSeparator1,
+            this.BindingNavigatorMoveNextItem,
+            this.BindingNavigatorMoveLastItem,
+            this.BindingNavigatorSeparator2});
+            this.BindingNavigatorPaging.Location = new System.Drawing.Point(0, 0);
+            this.BindingNavigatorPaging.MoveFirstItem = this.BindingNavigatorMoveFirstItem;
+            this.BindingNavigatorPaging.MoveLastItem = this.BindingNavigatorMoveLastItem;
+            this.BindingNavigatorPaging.MoveNextItem = this.BindingNavigatorMoveNextItem;
+            this.BindingNavigatorPaging.MovePreviousItem = this.BindingNavigatorMovePreviousItem;
+            this.BindingNavigatorPaging.Name = "BindingNavigatorPaging";
+            this.BindingNavigatorPaging.PositionItem = this.BindingNavigatorPositionItem;
+            this.BindingNavigatorPaging.Size = new System.Drawing.Size(926, 25);
+            this.BindingNavigatorPaging.TabIndex = 31;
+            this.BindingNavigatorPaging.Text = "BindingNavigator1";
+            // 
+            // BindingNavigatorCountItem
+            // 
+            this.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem";
+            this.BindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
+            this.BindingNavigatorCountItem.Text = "of {0}";
+            this.BindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // BindingNavigatorMoveFirstItem
+            // 
+            this.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("BindingNavigatorMoveFirstItem.Image")));
+            this.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem";
+            this.BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.BindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.BindingNavigatorMoveFirstItem.Text = "Move first";
+            // 
+            // BindingNavigatorMovePreviousItem
+            // 
+            this.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("BindingNavigatorMovePreviousItem.Image")));
+            this.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem";
+            this.BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.BindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.BindingNavigatorMovePreviousItem.Text = "Move previous";
+            // 
+            // BindingNavigatorSeparator
+            // 
+            this.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator";
+            this.BindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            // 
+            // BindingNavigatorPositionItem
+            // 
+            this.BindingNavigatorPositionItem.AccessibleName = "Position";
+            this.BindingNavigatorPositionItem.AutoSize = false;
+            this.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem";
+            this.BindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
+            this.BindingNavigatorPositionItem.Text = "0";
+            this.BindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // BindingNavigatorSeparator1
+            // 
+            this.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1";
+            this.BindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // BindingNavigatorMoveNextItem
+            // 
+            this.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("BindingNavigatorMoveNextItem.Image")));
+            this.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem";
+            this.BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.BindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.BindingNavigatorMoveNextItem.Text = "Move next";
+            // 
+            // BindingNavigatorMoveLastItem
+            // 
+            this.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.BindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("BindingNavigatorMoveLastItem.Image")));
+            this.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem";
+            this.BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.BindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.BindingNavigatorMoveLastItem.Text = "Move last";
+            // 
+            // BindingNavigatorSeparator2
+            // 
+            this.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2";
+            this.BindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingSourcePaging
+            // 
+            this.bindingSourcePaging.PositionChanged += new System.EventHandler(this.bindingSourcePaging_PositionChanged);
             // 
             // FormUser
             // 
@@ -533,12 +707,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(953, 591);
+            this.Controls.Add(this.PanelDgv);
             this.Controls.Add(this.PanelButton);
-            this.Controls.Add(this.ButtonRoleGroup);
             this.Controls.Add(this.GroupBoxInputData);
-            this.Controls.Add(this.Label2);
-            this.Controls.Add(this.TextBoxSearch);
-            this.Controls.Add(this.dgv);
             this.Controls.Add(this.Label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormUser";
@@ -556,7 +727,15 @@
             this.PanelStatus.ResumeLayout(false);
             this.PanelStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxProfile)).EndInit();
+            this.PanelDgv.ResumeLayout(false);
+            this.PanelDgv.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.Panel1.ResumeLayout(false);
+            this.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingNavigatorPaging)).EndInit();
+            this.BindingNavigatorPaging.ResumeLayout(false);
+            this.BindingNavigatorPaging.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePaging)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -571,7 +750,6 @@
         internal System.Windows.Forms.ToolStripMenuItem ButtonSave;
         internal System.Windows.Forms.ToolStripMenuItem ButtonDelete;
         internal System.Windows.Forms.ToolStripMenuItem ButtonRefresh;
-        internal System.Windows.Forms.Button ButtonRoleGroup;
         internal System.Windows.Forms.GroupBox GroupBoxInputData;
         internal System.Windows.Forms.Panel PanelGender;
         internal System.Windows.Forms.RadioButton RadioButtonPemale;
@@ -595,11 +773,27 @@
         internal System.Windows.Forms.Label Label4;
         internal System.Windows.Forms.TextBox TextBoxUserId;
         internal System.Windows.Forms.Label Label3;
-        internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.TextBox TextBoxSearch;
-        internal System.Windows.Forms.DataGridView dgv;
         internal System.Windows.Forms.Label Label1;
         internal System.Windows.Forms.Button ButtonUserAccess;
         internal System.Windows.Forms.Button ButtonUserGroup;
+        internal System.Windows.Forms.Panel PanelDgv;
+        internal System.Windows.Forms.DataGridView dgv;
+        internal System.Windows.Forms.Panel Panel1;
+        internal System.Windows.Forms.ComboBox ComboBoxEntries;
+        internal System.Windows.Forms.Label Label11;
+        internal System.Windows.Forms.Label Label10;
+        internal System.Windows.Forms.Label label13;
+        internal System.Windows.Forms.BindingNavigator BindingNavigatorPaging;
+        internal System.Windows.Forms.ToolStripLabel BindingNavigatorCountItem;
+        internal System.Windows.Forms.ToolStripButton BindingNavigatorMoveFirstItem;
+        internal System.Windows.Forms.ToolStripButton BindingNavigatorMovePreviousItem;
+        internal System.Windows.Forms.ToolStripSeparator BindingNavigatorSeparator;
+        internal System.Windows.Forms.ToolStripTextBox BindingNavigatorPositionItem;
+        internal System.Windows.Forms.ToolStripSeparator BindingNavigatorSeparator1;
+        internal System.Windows.Forms.ToolStripButton BindingNavigatorMoveNextItem;
+        internal System.Windows.Forms.ToolStripButton BindingNavigatorMoveLastItem;
+        internal System.Windows.Forms.ToolStripSeparator BindingNavigatorSeparator2;
+        private System.Windows.Forms.BindingSource bindingSourcePaging;
     }
 }
