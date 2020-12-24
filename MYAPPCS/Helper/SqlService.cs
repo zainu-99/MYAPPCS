@@ -62,6 +62,7 @@ namespace MYAPPCS.Helper
             {
                 Console.Write(e.Message);
             }
+            con.Close();
             return ds.Tables[tableName];
         }
         public static ModSqlCommand GetCommand(String query)
@@ -81,20 +82,22 @@ namespace MYAPPCS.Helper
         public static ExecuteQueryReturn ExecuteQuery(String query)
         {
             var eqr = new ExecuteQueryReturn();
+            var con = new SqlConnection(SetConnection);
+            con.Open();
             try
             {
-                var con = new SqlConnection(SetConnection);
-                con.Open();
                 var sqlcom = new SqlCommand(query, con);
                 sqlcom.ExecuteNonQuery();
                 eqr.Message = "";
                 eqr.Success = true;
+                con.Close();
                 return eqr;
             }
             catch (Exception e)
             {
                 eqr.Message = e.Message;
                 eqr.Success = false;
+                con.Close();
                 return eqr;
             }
         }
